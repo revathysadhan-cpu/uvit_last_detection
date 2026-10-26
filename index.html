@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UVIT: The Last Detection</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="menu-open">
+<main id="app">
+  <header id="bar" class="bar">
+    <div class="brand"><span class="dot" aria-hidden="true"></span>UVIT <em>//</em> THE LAST DETECTION</div>
+    <div class="bar-btns">
+      <button id="muteBtn" class="chip" type="button" aria-pressed="true">SOUND ON</button>
+      <button id="pauseBtn" class="chip" type="button">PAUSE</button>
+    </div>
+  </header>
+
+  <section id="cabinet" aria-label="Game">
+    <div id="stage">
+      <canvas id="game" width="320" height="180" aria-label="UVIT: The Last Detection game screen"></canvas>
+      <div id="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <div id="title" class="overlay">
+      <div class="panel">
+        <p class="eyebrow">AstroSat · UVIT · FUV / NUV · 252 pointings</p>
+        <h1>UVIT:<span>The Last Detection</span></h1>
+        <p class="tag">One trainee. 252 observations. Infinite false positives. Zero working kernels.</p>
+        <div class="actions">
+          <button id="startBtn" class="btn-primary" type="button">START RUN</button>
+          <span class="best">BEST <b id="bestTitle">0</b></span>
+        </div>
+        <div class="tabs" role="tablist">
+          <button type="button" role="tab" data-tab="controls" aria-selected="true">CONTROLS</button>
+          <button type="button" role="tab" data-tab="ach" aria-selected="false">ACHIEVEMENTS <span id="achCount">0/9</span></button>
+        </div>
+        <div id="tab-controls" class="tabpane">
+          <dl class="ctrl key-only">
+            <dt>Jump</dt><dd><kbd>Space</kbd> <kbd>↑</kbd> or click the screen</dd>
+            <dt>Slide</dt><dd><kbd>↓</kbd> tap, or hold to keep sliding</dd>
+            <dt>Pipeline</dt><dd><kbd>X</kbd> when the coffee meter is full</dd>
+            <dt>Pause</dt><dd><kbd>P</kbd> <kbd>Esc</kbd> · <kbd>M</kbd> mutes</dd>
+          </dl>
+          <dl class="ctrl touch-only">
+            <dt>Jump</dt><dd>Tap the screen or JUMP</dd>
+            <dt>Slide</dt><dd>Hold SLIDE to keep sliding</dd>
+            <dt>Pipeline</dt><dd>RERUN when the coffee meter is full</dd>
+          </dl>
+          <p class="tip" id="tip"></p>
+        </div>
+        <div id="tab-ach" class="tabpane" hidden>
+          <ul id="achList" class="achlist"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="pause" class="overlay center" hidden>
+      <div class="panel">
+        <p class="eyebrow">Kernel idle</p>
+        <h2>Paused</h2>
+        <p class="quip">Your variables are safe. For now.</p>
+        <div class="actions">
+          <button id="resumeBtn" class="btn-primary" type="button">RESUME</button>
+          <button id="quitBtn" class="btn-ghost" type="button">QUIT TO MENU</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="over" class="overlay center" hidden>
+      <div class="panel">
+        <p class="eyebrow">Run terminated · cause logged</p>
+        <h2 id="goHead">Kernel died</h2>
+        <p class="quip" id="goQuip"></p>
+        <dl class="stats">
+          <div><dt>Score</dt><dd id="goScore">0</dd></div>
+          <div><dt>Distance</dt><dd id="goDist">0 m</dd></div>
+          <div><dt>Observations</dt><dd id="goObs">0 / 252</dd></div>
+          <div><dt>Sources</dt><dd id="goSrc">0</dd></div>
+          <div><dt>Coffee</dt><dd id="goCof">0</dd></div>
+          <div><dt>Best</dt><dd id="goBest">0</dd></div>
+        </dl>
+        <p class="newbest" id="goNew" hidden>New personal best</p>
+        <p class="eyebrow" id="goAchHead" hidden>Unlocked this run</p>
+        <ul class="achlist" id="goAch" hidden></ul>
+        <div class="actions">
+          <button id="retryBtn" class="btn-primary" type="button">RERUN</button>
+          <button id="menuBtn" class="btn-ghost" type="button">MENU</button>
+          <span class="hint">or press Enter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="pad" hidden>
+    <button id="btnSlide" class="padbtn" type="button">SLIDE<small>hold</small></button>
+    <button id="btnPipe" class="padbtn pipe" type="button">RERUN<small>pipeline</small></button>
+    <button id="btnJump" class="padbtn jump" type="button">JUMP<small>or tap screen</small></button>
+  </div>
+
+  <p id="keys" class="keys"><kbd>Space</kbd> jump · <kbd>↓</kbd> slide · <kbd>X</kbd> rerun pipeline · <kbd>P</kbd> pause · <kbd>M</kbd> mute</p>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/content.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
